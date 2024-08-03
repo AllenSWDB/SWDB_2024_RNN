@@ -1,4 +1,4 @@
-# hash:sha256:ab2a3cb000be0f20182f5bd7e4a555275f4f86617433991717f9e4b2ca963799
+# hash:sha256:08cccb70a90af4806da6298cfdd1d373f7dd1e45fa4f95b7d6aa6c0a4ab67cb0
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/jupyterlab:3.0.9-miniconda4.9.2-python3.8-ubuntu20.04
 
@@ -12,4 +12,5 @@ RUN pip3 install -U --no-cache-dir \
     imageio==2.34.2 \
     matplotlib==3.7.5 \
     numpy==1.24.4 \
+    pandas==2.0.2 \
     scikit-learn==1.3.2
