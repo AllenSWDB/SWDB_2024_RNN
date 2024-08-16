@@ -81,7 +81,7 @@ def plot_FPs(ax, sorted_fps, eig_decomps, D_use, n_interp=20, stability_thresh=1
     - ms: Marker size for plotting fixed points.
     - plot_unstable: Boolean flag to plot unstable fixed points.
     - plot_expansion: Boolean flag to plot expansion lines for unstable fixed points.
-    - rf: Scaling factor for expansion lines.
+    - rf: Scaling factor for expansion lines just to see them in the visualization
     """
     
     # Define color map and default color
@@ -106,19 +106,12 @@ def plot_FPs(ax, sorted_fps, eig_decomps, D_use, n_interp=20, stability_thresh=1
                         right_dots = np.dot(np.real(eig_decomps[fp_index]['R'][:, index]).T, D_use[:, [0, 1]])
                         left_dots = np.dot(np.real(eig_decomps[fp_index]['L'][:, index]).T, D_use[:, [0, 1]])
                         
-#                         # This calculates how perturbations move through full relaxation dynamics
-#                         # Compute the overlap between right and left eigenvectors
-#                         overlap = np.dot(right_dots, left_dots.T)
-#                         # Calculate the start and end points for the expansion line
-#                         start_points = projected_fp - rf * overlap * right_dots
-#                         end_points = projected_fp + rf * overlap * right_dots
-#                         expansion_points = np.concatenate((start_points, end_points), axis=0)
-                        
-                        
-                        # This is just the right eigenvector, fewer steps to show.
+                        # This calculates how perturbations move through full relaxation dynamics
+                        # Compute the overlap between right and left eigenvectors
+                        overlap = np.dot(right_dots, left_dots.T)
                         # Calculate the start and end points for the expansion line
-                        start_points = projected_fp - rf * right_dots
-                        end_points = projected_fp + rf * right_dots
+                        start_points = projected_fp - rf * overlap * right_dots
+                        end_points = projected_fp + rf * overlap * right_dots
                         expansion_points = np.concatenate((start_points, end_points), axis=0)
 
                         # Extract x and y coordinates for plotting
